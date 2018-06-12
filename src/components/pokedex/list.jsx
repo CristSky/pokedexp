@@ -5,7 +5,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  Avatar
+  Avatar,
+  Divider
 } from "@material-ui/core";
 
 export const PokedexList = props => {
@@ -38,7 +39,7 @@ export const PokedexList = props => {
         Next
       </Button>
       <List>
-        {results.map((pokemon, i) => (
+        {results.map((pokemon, i) => ([
           <ListItem key={i} button onClick={() => selectPokemon(pokemon.name)}>
             <Avatar>
               <img
@@ -47,8 +48,9 @@ export const PokedexList = props => {
               />
             </Avatar>
             <ListItemText primary={pokemon.name} />
-          </ListItem>
-        ))}
+          </ListItem>,
+          <Divider key={`divider${i}`} inset component="li" />
+        ]))}
       </List>
     </div>
   );
