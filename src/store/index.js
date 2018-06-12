@@ -4,10 +4,12 @@ import { routerMiddleware, routerReducer } from "react-router-redux";
 import thunk from "redux-thunk";
 
 import { pokedex } from "./reducers/pokedex";
+import { pokemon } from "./reducers/pokemon";
 
 const middleware = [thunk],
   reducers_default = combineReducers({
     pokedex,
+    pokemon,
     routing: routerReducer
   });
 

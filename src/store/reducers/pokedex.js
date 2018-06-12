@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const BASE_API = "https://pokeapi.co/api/v2/";
+const BASE_API = "https://pokeapi.co/api/v2/pokemon/";
 const POKEDEX = {
   LIST_POKEMONS: "LIST_POKEMONS"
 };
 
 export const fetchPokemonsList = ({ limit = 20, offset = 0 }) => dispatch =>
   axios
-    .get(`${BASE_API}pokemon/?limit=${limit}&offset=${offset}`)
+    .get(`${BASE_API}?limit=${limit}&offset=${offset}`)
     .then(response => dispatch(getPokemonsList(response.data)))
     .catch(console.error);
 

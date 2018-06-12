@@ -1,0 +1,25 @@
+.poke-loading {
+  animation: PokeLoading infinite 1s linear;
+  height: 80px;
+}
+
+.poke-loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.poke-loading-container span {
+  margin-top: 10px;
+}
+
+@keyframes PokeLoading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

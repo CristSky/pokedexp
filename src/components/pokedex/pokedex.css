@@ -1,0 +1,16 @@
+.collection {
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.collection a.collection-item {
+  display: block;
+  transition: 0.25s;
+  color: #26a69a;
+}
+
+.collection a:hover {
+  background-color: #ddd;
+}
