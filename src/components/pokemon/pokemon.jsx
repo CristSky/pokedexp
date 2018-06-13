@@ -1,8 +1,19 @@
 import React, { Component } from "react";
+import {
+  Typography,
+  Grid,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
 import store from "../../store";
 import { fetchPokemon } from "../../store/reducers/pokemon";
 import { PokeLoading } from "../loading/pokeBallSpiner";
-// import "./pokedex.css";
+
+import { PokemonSprites } from "./sprites";
+import { PokemonDetails } from "./details";
+import { ListKey } from "./listKey";
 
 class Pokemon extends Component {
   constructor(props) {
@@ -31,11 +42,59 @@ class Pokemon extends Component {
     this.setLoading(true, () => store.dispatch(fetchPokemon(idOrName)));
 
   render() {
-    const { loading } = this.state;
+    const { loading, pokemon } = this.state;
+
     return loading ? (
       <PokeLoading />
     ) : (
-      <pre>{JSON.stringify(this.state.pokemon)}</pre>
+      <Grid
+        container
+        spacing={64}
+        alignItems="flex-start"
+        direction="row"
+        justify="center"
+      >
+        <Grid item xs={12}>
+          <Typography
+            className="pokemon-name-captalize"
+            variant="display2"
+            align="center"
+          >
+            {pokemon.id} - {pokemon.name}
+          </Typography>
+          <PokemonSprites sprites={pokemon.sprites} />
+          <ListKey items={pokemon.types} keyName="type" label="Type" />
+        </Grid>
+
+        <Grid item xs={12} md={6} lg={6}>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell component="th" variant="head">
+                  Height:
+                </TableCell>
+                <TableCell numeric>{pokemon.height / 10} m</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell component="th" variant="head">
+                  Weight:
+                </TableCell>
+                <TableCell numeric>{pokemon.weight / 10} kg</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell component="th" variant="head">
+                  Base experience:
+                </TableCell>
+                <TableCell numeric>{pokemon.base_experience}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Grid>
+
+        <Grid item xs={12} md={6} lg={6}>
+          <PokemonDetails pokemon={pokemon} />
+        </Grid>
+      </Grid>
     );
   }
 }

@@ -1,5 +1,5 @@
 .poke-loading {
-  animation: PokeLoading infinite 1s linear;
+  animation: PokeLoading infinite 0.7s linear;
   height: 80px;
 }
 

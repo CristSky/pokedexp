@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { push } from "react-router-redux";
-import queryString from "query-string";
+import qs from "qs";
 import store from "../../store";
 import { fetchPokemonsList } from "../../store/reducers/pokedex.js";
 import { PokedexList } from "./list";
 import { PokeLoading } from "../loading/pokeBallSpiner";
-import "./pokedex.css";
 
 class Pokedex extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class Pokedex extends Component {
   }
 
   componentDidMount() {
-    const params = queryString.parse(this.props.location.search);
+    const params = qs.parse(this.props.location.search);
     const limit = params.limit ? parseInt(params.limit, 10) : 20;
     const offset = params.offset ? parseInt(params.offset, 10) : 0;
     this.unsubscribe = store.subscribe(() =>

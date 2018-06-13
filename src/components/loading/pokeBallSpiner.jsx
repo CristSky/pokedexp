@@ -1,5 +1,5 @@
 import React from "react";
-import pokeball from "../../assets/pokeball2.svg";
+import pokeball from "../../assets/pokeball.svg";
 import "./loading.css";
 
 export const PokeLoading = () => (

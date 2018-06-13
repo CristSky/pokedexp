@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { AppBar } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { AppBar, Paper, Typography, Toolbar } from "@material-ui/core";
 
 import "./layout.css";
 
@@ -8,9 +9,18 @@ class Layout extends Component {
     return (
       <Fragment>
         <AppBar position="fixed">
-          <h1 className="title">PokedeXP</h1>
+          <Toolbar>
+            <Typography variant="display2" align="center" noWrap>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <span style={{ color: "white" }}>pokede</span>
+                <span style={{ color: "black" }}>xp</span>
+              </Link>
+            </Typography>
+          </Toolbar>
         </AppBar>
-        <article className="content">{this.props.children}</article>
+        <article className="content">
+          <Paper className="content-padding">{this.props.children}</Paper>
+        </article>
       </Fragment>
     );
   }

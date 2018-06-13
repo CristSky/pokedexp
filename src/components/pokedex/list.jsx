@@ -1,7 +1,6 @@
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Pagination } from "./pagination";
 import {
-  Button,
   List,
   ListItem,
   ListItemText,
@@ -24,22 +23,11 @@ export const PokedexList = props => {
   const imgBaseSrc = spritesBaseURL + spritesPath;
 
   return (
-    <div>
-      <h3>
-        Pokemons list {offset} - {offset + limit} of {count}
-      </h3>
-      <Button variant="outlined" disabled={offset === 0} onClick={backPages}>
-        Back
-      </Button>
-      <Button
-        variant="outlined"
-        disabled={offset + limit >= count}
-        onClick={nextPage}
-      >
-        Next
-      </Button>
+    <Fragment>
+      <Pagination {...{ limit, offset, count, nextPage, backPages }} />
       <List>
-        {results.map((pokemon, i) => ([
+        <Divider />
+        {results.map((pokemon, i) => [
           <ListItem key={i} button onClick={() => selectPokemon(pokemon.name)}>
             <Avatar>
               <img
@@ -47,11 +35,15 @@ export const PokedexList = props => {
                 alt={pokemon.name}
               />
             </Avatar>
-            <ListItemText primary={pokemon.name} />
+            <ListItemText
+              className="pokemon-name-captalize"
+              primary={pokemon.name}
+            />
           </ListItem>,
           <Divider key={`divider${i}`} inset component="li" />
-        ]))}
+        ])}
       </List>
-    </div>
+      <Pagination {...{ limit, offset, count, nextPage, backPages }} />
+    </Fragment>
   );
 };
